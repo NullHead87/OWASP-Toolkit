@@ -89,38 +89,38 @@
   </div>
   <div class="nav-section">
     <div class="nav-label">General</div>
-    <div class="nav-item active" onclick="nav('home',this)">🏠 Home</div>
+    <div class="nav-item active" onclick="nav('home',this)"> Home</div>
   </div>
   <div class="nav-section">
     <div class="nav-label">Encoding & Crypto</div>
-    <div class="nav-item" onclick="nav('hashing',this)">🔑 Hash Generator <span class="nav-badge">A02</span></div>
-    <div class="nav-item" onclick="nav('base64',this)">📦 Base64 / ROT13 <span class="nav-badge">A08</span></div>
-    <div class="nav-item" onclick="nav('url',this)">🔗 URL Encoder <span class="nav-badge">A03</span></div>
-    <div class="nav-item" onclick="nav('jwt',this)">🎫 JWT Analyzer <span class="nav-badge">A02</span></div>
-    <div class="nav-item" onclick="nav('oauth',this)">🔐 OAuth Bypass <span class="nav-badge">A07</span></div>
+    <div class="nav-item" onclick="nav('hashing',this)"> Hash Generator <span class="nav-badge">A02</span></div>
+    <div class="nav-item" onclick="nav('base64',this)"> Base64 / ROT13 <span class="nav-badge">A08</span></div>
+    <div class="nav-item" onclick="nav('url',this)"> URL Encoder <span class="nav-badge">A03</span></div>
+    <div class="nav-item" onclick="nav('jwt',this)"> JWT Analyzer <span class="nav-badge">A02</span></div>
+    <div class="nav-item" onclick="nav('oauth',this)"> OAuth Bypass <span class="nav-badge">A07</span></div>
   </div>
   <div class="nav-section">
     <div class="nav-label">Injection</div>
-    <div class="nav-item" onclick="nav('xss',this)">💉 XSS Payloads <span class="nav-badge">A03</span></div>
-    <div class="nav-item" onclick="nav('sqli',this)">🗄️ SQL Injection <span class="nav-badge">A03</span></div>
-    <div class="nav-item" onclick="nav('xxe',this)">📄 XXE Payloads <span class="nav-badge">A03</span></div>
-    <div class="nav-item" onclick="nav('pickle',this)">🐍 Pickle RCE <span class="nav-badge">A08</span></div>
+    <div class="nav-item" onclick="nav('xss',this)"> XSS Payloads <span class="nav-badge">A03</span></div>
+    <div class="nav-item" onclick="nav('sqli',this)"> SQL Injection <span class="nav-badge">A03</span></div>
+    <div class="nav-item" onclick="nav('xxe',this)"> XXE Payloads <span class="nav-badge">A03</span></div>
+    <div class="nav-item" onclick="nav('pickle',this)"> Pickle RCE <span class="nav-badge">A08</span></div>
   </div>
   <div class="nav-section">
     <div class="nav-label">Attack Tools</div>
-    <div class="nav-item" onclick="nav('csrf',this)">🎭 CSRF PoC Builder <span class="nav-badge">A01</span></div>
-    <div class="nav-item" onclick="nav('nullbyte',this)">🔓 Null Byte Bypass <span class="nav-badge">A04</span></div>
-    <div class="nav-item" onclick="nav('allowlist',this)">↪️ Allowlist Bypass <span class="nav-badge">A08</span></div>
-    <div class="nav-item" onclick="nav('emailtrunc',this)">✉️ Email Truncation <span class="nav-badge">A10</span></div>
-    <div class="nav-item" onclick="nav('revshell',this)">🔴 Reverse Shells <span class="nav-badge">A08</span></div>
+    <div class="nav-item" onclick="nav('csrf',this)"> CSRF PoC Builder <span class="nav-badge">A01</span></div>
+    <div class="nav-item" onclick="nav('nullbyte',this)"> Null Byte Bypass <span class="nav-badge">A04</span></div>
+    <div class="nav-item" onclick="nav('allowlist',this)">↪ Allowlist Bypass <span class="nav-badge">A08</span></div>
+    <div class="nav-item" onclick="nav('emailtrunc',this)"> Email Truncation <span class="nav-badge">A10</span></div>
+    <div class="nav-item" onclick="nav('revshell',this)"> Reverse Shells <span class="nav-badge">A08</span></div>
   </div>
   <div class="nav-section">
     <div class="nav-label">Recon & Analysis</div>
-    <div class="nav-item" onclick="nav('recon',this)">🔍 Recon Checklist <span class="nav-badge">A04</span></div>
-    <div class="nav-item" onclick="nav('http',this)">🌐 HTTP Methods <span class="nav-badge">A07</span></div>
-    <div class="nav-item" onclick="nav('respanalyzer',this)">📊 Response Analyzer</div>
-    <div class="nav-item" onclick="nav('wordlist',this)">📝 Wordlist / ffuf</div>
-    <div class="nav-item" onclick="nav('pwgen',this)">🔐 Password Wordlist</div>
+    <div class="nav-item" onclick="nav('recon',this)"> Recon Checklist <span class="nav-badge">A04</span></div>
+    <div class="nav-item" onclick="nav('http',this)"> HTTP Methods <span class="nav-badge">A07</span></div>
+    <div class="nav-item" onclick="nav('respanalyzer',this)"> Response Analyzer</div>
+    <div class="nav-item" onclick="nav('wordlist',this)"> Wordlist / ffuf</div>
+    <div class="nav-item" onclick="nav('pwgen',this)"> Password Wordlist</div>
   </div>
 </nav>
 
@@ -132,20 +132,20 @@
     <h2>OWASP Security Toolkit <span style="font-size:14px;color:var(--muted)">v2</span></h2>
     <p>Lab assistant for web application penetration testing. 20 tools covering OWASP Top 10.</p>
   </div>
-  <div class="alert alert-warn">⚠️ For authorized penetration testing and lab environments only.</div>
+  <div class="alert alert-warn"> For authorized penetration testing and lab environments only.</div>
   <div class="grid3">
-    <div class="card" style="cursor:pointer;border-color:rgba(255,51,102,0.3)" onclick="nav('hashing',null)"><h3>🔑 Hash Generator</h3><p style="font-size:11px;color:var(--muted)">MD5, SHA1/256/512, Base64, OAuth reverse</p><span class="tag tag-red">A02</span></div>
-    <div class="card" style="cursor:pointer" onclick="nav('jwt',null)"><h3>🎫 JWT Analyzer</h3><p style="font-size:11px;color:var(--muted)">Decode, forge alg:none, identity swap</p><span class="tag tag-red">A02</span></div>
-    <div class="card" style="cursor:pointer" onclick="nav('xss',null)"><h3>💉 XSS Payloads</h3><p style="font-size:11px;color:var(--muted)">DOM, Reflected, Stored + custom builder</p><span class="tag tag-red">A03</span></div>
-    <div class="card" style="cursor:pointer" onclick="nav('sqli',null)"><h3>🗄️ SQL Injection</h3><p style="font-size:11px;color:var(--muted)">UNION SELECT builder, SQLite enum</p><span class="tag tag-red">A03</span></div>
-    <div class="card" style="cursor:pointer" onclick="nav('pickle',null)"><h3>🐍 Pickle RCE</h3><p style="font-size:11px;color:var(--muted)">Python pickle payload + reverse shell</p><span class="tag tag-red">A08</span></div>
-    <div class="card" style="cursor:pointer" onclick="nav('csrf',null)"><h3>🎭 CSRF PoC Builder</h3><p style="font-size:11px;color:var(--muted)">Auto-generate malicious HTML forms</p><span class="tag tag-blue">A01</span></div>
-    <div class="card" style="cursor:pointer" onclick="nav('xxe',null)"><h3>📄 XXE Payloads</h3><p style="font-size:11px;color:var(--muted)">File read, SSRF, OOB exfiltration</p><span class="tag tag-red">A03</span></div>
-    <div class="card" style="cursor:pointer" onclick="nav('nullbyte',null)"><h3>🔓 Null Byte Bypass</h3><p style="font-size:11px;color:var(--muted)">File extension bypass (%2500)</p><span class="tag tag-yellow">A04</span></div>
-    <div class="card" style="cursor:pointer" onclick="nav('allowlist',null)"><h3>↪️ Allowlist Bypass</h3><p style="font-size:11px;color:var(--muted)">Redirect bypass via query param</p><span class="tag tag-red">A08</span></div>
-    <div class="card" style="cursor:pointer" onclick="nav('emailtrunc',null)"><h3>✉️ Email Truncation</h3><p style="font-size:11px;color:var(--muted)">255-char email for privilege escalation</p><span class="tag tag-red">A10</span></div>
-    <div class="card" style="cursor:pointer" onclick="nav('respanalyzer',null)"><h3>📊 Response Analyzer</h3><p style="font-size:11px;color:var(--muted)">Analyze HTTP response headers</p><span class="tag tag-green">Recon</span></div>
-    <div class="card" style="cursor:pointer" onclick="nav('revshell',null)"><h3>🔴 Reverse Shells</h3><p style="font-size:11px;color:var(--muted)">All shell types cheatsheet + builder</p><span class="tag tag-red">A08</span></div>
+    <div class="card" style="cursor:pointer;border-color:rgba(255,51,102,0.3)" onclick="nav('hashing',null)"><h3> Hash Generator</h3><p style="font-size:11px;color:var(--muted)">MD5, SHA1/256/512, Base64, OAuth reverse</p><span class="tag tag-red">A02</span></div>
+    <div class="card" style="cursor:pointer" onclick="nav('jwt',null)"><h3> JWT Analyzer</h3><p style="font-size:11px;color:var(--muted)">Decode, forge alg:none, identity swap</p><span class="tag tag-red">A02</span></div>
+    <div class="card" style="cursor:pointer" onclick="nav('xss',null)"><h3> XSS Payloads</h3><p style="font-size:11px;color:var(--muted)">DOM, Reflected, Stored + custom builder</p><span class="tag tag-red">A03</span></div>
+    <div class="card" style="cursor:pointer" onclick="nav('sqli',null)"><h3> SQL Injection</h3><p style="font-size:11px;color:var(--muted)">UNION SELECT builder, SQLite enum</p><span class="tag tag-red">A03</span></div>
+    <div class="card" style="cursor:pointer" onclick="nav('pickle',null)"><h3> Pickle RCE</h3><p style="font-size:11px;color:var(--muted)">Python pickle payload + reverse shell</p><span class="tag tag-red">A08</span></div>
+    <div class="card" style="cursor:pointer" onclick="nav('csrf',null)"><h3> CSRF PoC Builder</h3><p style="font-size:11px;color:var(--muted)">Auto-generate malicious HTML forms</p><span class="tag tag-blue">A01</span></div>
+    <div class="card" style="cursor:pointer" onclick="nav('xxe',null)"><h3> XXE Payloads</h3><p style="font-size:11px;color:var(--muted)">File read, SSRF, OOB exfiltration</p><span class="tag tag-red">A03</span></div>
+    <div class="card" style="cursor:pointer" onclick="nav('nullbyte',null)"><h3> Null Byte Bypass</h3><p style="font-size:11px;color:var(--muted)">File extension bypass (%2500)</p><span class="tag tag-yellow">A04</span></div>
+    <div class="card" style="cursor:pointer" onclick="nav('allowlist',null)"><h3>↪ Allowlist Bypass</h3><p style="font-size:11px;color:var(--muted)">Redirect bypass via query param</p><span class="tag tag-red">A08</span></div>
+    <div class="card" style="cursor:pointer" onclick="nav('emailtrunc',null)"><h3>Email Truncation</h3><p style="font-size:11px;color:var(--muted)">255-char email for privilege escalation</p><span class="tag tag-red">A10</span></div>
+    <div class="card" style="cursor:pointer" onclick="nav('respanalyzer',null)"><h3> Response Analyzer</h3><p style="font-size:11px;color:var(--muted)">Analyze HTTP response headers</p><span class="tag tag-green">Recon</span></div>
+    <div class="card" style="cursor:pointer" onclick="nav('revshell',null)"><h3> Reverse Shells</h3><p style="font-size:11px;color:var(--muted)">All shell types cheatsheet + builder</p><span class="tag tag-red">A08</span></div>
   </div>
 </div>
 
@@ -153,7 +153,7 @@
 <div id="page-hashing" class="page">
   <div class="page-header"><h2>Hash Generator</h2><p>MD5, SHA variants, Base64, OAuth bypass calculator.</p><span class="tag tag-red">A02</span></div>
   <div class="card">
-    <h3>🔑 Hash Input</h3>
+    <h3> Hash Input</h3>
     <label>Input Text</label>
     <input type="text" id="hash-input" placeholder="Enter text to hash..." oninput="generateHashes()">
     <div class="flex-row">
@@ -163,14 +163,14 @@
     <div id="hash-output" style="margin-top:14px"></div>
   </div>
   <div class="card">
-    <h3>🔐 OAuth Password Calculator (Juice Shop)</h3>
+    <h3> OAuth Password Calculator (Juice Shop)</h3>
     <p style="font-size:11px;color:var(--muted);margin-bottom:10px">Juice Shop: password = btoa(email.split('').reverse().join(''))</p>
     <label>Email Address</label>
     <input type="text" id="oauth-email" placeholder="bjoern.kimminich@gmail.com" oninput="calcOauth()">
     <div id="oauth-output"></div>
   </div>
   <div class="card">
-    <h3>🔓 SHA1 Client-side Hash (Old Wasdat PUT /api/user)</h3>
+    <h3> SHA1 Client-side Hash (Old Wasdat PUT /api/user)</h3>
     <label>Password</label>
     <input type="text" id="sha1-input" placeholder="JAMK2026" oninput="calcSha1()">
     <div id="sha1-output"></div>
@@ -182,14 +182,14 @@
   <div class="page-header"><h2>Base64 / ROT13</h2><p>Encode, decode Base64 and ROT13 — used in pickle, JWT, Easter Egg.</p><span class="tag tag-red">A08</span></div>
   <div class="grid2">
     <div class="card">
-      <h3>📦 Base64 Encode</h3>
+      <h3> Base64 Encode</h3>
       <textarea id="b64-encode-input" placeholder="Plain text..."></textarea>
       <button class="btn btn-primary" onclick="b64encode()">Encode →</button>
       <div class="output-header mt8"><span class="output-label">Output</span><button class="copy-btn" onclick="cpEl('b64-encode-out')">Copy</button></div>
       <div class="output" id="b64-encode-out"></div>
     </div>
     <div class="card">
-      <h3>📦 Base64 Decode</h3>
+      <h3> Base64 Decode</h3>
       <textarea id="b64-decode-input" placeholder="Base64..."></textarea>
       <button class="btn btn-primary" onclick="b64decode()">Decode →</button>
       <div class="output-header mt8"><span class="output-label">Output</span><button class="copy-btn" onclick="cpEl('b64-decode-out')">Copy</button></div>
@@ -197,7 +197,7 @@
     </div>
   </div>
   <div class="card">
-    <h3>🔄 ROT13 (Juice Shop Easter Egg)</h3>
+    <h3> ROT13 (Juice Shop Easter Egg)</h3>
     <input type="text" id="rot13-input" placeholder="/gur/qrif/ner/fb/shaal/..." oninput="calcRot13()">
     <div class="output-header"><span class="output-label">Decoded</span><button class="copy-btn" onclick="cpEl('rot13-out')">Copy</button></div>
     <div class="output" id="rot13-out"></div>
@@ -209,7 +209,7 @@
   <div class="page-header"><h2>URL Encoder / Decoder</h2><p>URL encode/decode — critical for SQL injection, null byte bypass, and XSS payloads.</p><span class="tag tag-red">A03</span></div>
   <div class="grid2">
     <div class="card">
-      <h3>🔗 URL Encode</h3>
+      <h3> URL Encode</h3>
       <textarea id="url-encode-input" placeholder="Text to encode..."></textarea>
       <div class="flex-row">
         <button class="btn btn-primary" onclick="urlEncode('full')">Full Encode</button>
@@ -219,7 +219,7 @@
       <div class="output" id="url-encode-out"></div>
     </div>
     <div class="card">
-      <h3>🔗 URL Decode</h3>
+      <h3> URL Decode</h3>
       <textarea id="url-decode-input" placeholder="%3Cscript%3E..."></textarea>
       <button class="btn btn-primary" onclick="urlDecode()">Decode →</button>
       <div class="output-header mt8"><span class="output-label">Output</span><button class="copy-btn" onclick="cpEl('url-decode-out')">Copy</button></div>
@@ -227,7 +227,7 @@
     </div>
   </div>
   <div class="card">
-    <h3>📋 Common URL Encoded Characters</h3>
+    <h3> Common URL Encoded Characters</h3>
     <div id="url-cheatsheet"></div>
   </div>
 </div>
@@ -236,12 +236,12 @@
 <div id="page-jwt" class="page">
   <div class="page-header"><h2>JWT Analyzer & Forger</h2><p>Decode JWT tokens, forge alg:none tokens, modify claims.</p><span class="tag tag-red">A02</span><span class="tag tag-blue">A07</span></div>
   <div class="card">
-    <h3>🔍 JWT Decoder</h3>
+    <h3> JWT Decoder</h3>
     <textarea id="jwt-input" placeholder="eyJ0eXAiOiJKV1Qi..." oninput="decodeJwt()"></textarea>
     <div id="jwt-decoded"></div>
   </div>
   <div class="card">
-    <h3>⚠️ Alg:None Forger</h3>
+    <h3> Alg:None Forger</h3>
     <p style="font-size:11px;color:var(--muted);margin-bottom:10px">Removes signature, sets alg to "none" — Old Wasdat & Juice Shop vulnerability</p>
     <textarea id="jwt-forge-input" placeholder="Paste JWT token..."></textarea>
     <label>New identity value (optional)</label>
@@ -255,7 +255,7 @@
 <div id="page-oauth" class="page">
   <div class="page-header"><h2>OAuth Bypass Tools</h2><p>OAuth implicit flow bypass and Juice Shop OAuth login exploit.</p><span class="tag tag-blue">A07</span></div>
   <div class="card">
-    <h3>🔐 Juice Shop OAuth Login</h3>
+    <h3> Juice Shop OAuth Login</h3>
     <label>Target Email</label>
     <input type="text" id="oauth-target" placeholder="bjoern.kimminich@gmail.com" oninput="buildOauthCurl()">
     <label>Target URL</label>
@@ -264,7 +264,7 @@
     <div class="output" id="oauth-curl-out"></div>
   </div>
   <div class="card">
-    <h3>🔄 PortSwigger POST /authenticate Payload</h3>
+    <h3>PortSwigger POST /authenticate Payload</h3>
     <div class="grid2">
       <div><label>Target Email</label><input type="text" id="ps-email" placeholder="carlos@carlos-montoya.net"></div>
       <div><label>Username</label><input type="text" id="ps-user" placeholder="wiener"></div>
@@ -281,7 +281,7 @@
 <div id="page-xss" class="page">
   <div class="page-header"><h2>XSS Payloads</h2><p>DOM, Reflected, Stored XSS. Juice Shop and Wasdat specific payloads.</p><span class="tag tag-red">A03</span></div>
   <div class="card">
-    <h3>⚡ Custom XSS Builder</h3>
+    <h3>Custom XSS Builder</h3>
     <div class="grid2">
       <div><label>Student ID / Message</label><input type="text" id="xss-id" placeholder="AG3021" oninput="buildCustomXss()"></div>
       <div><label>Type</label><select id="xss-type" onchange="buildCustomXss()"><option value="script">script tag</option><option value="img">img onerror</option><option value="svg">svg onload</option><option value="iframe">iframe (Juice Shop DOM)</option><option value="cookie">Cookie stealer</option><option value="phish">Fake login form</option></select></div>
@@ -296,7 +296,7 @@
 <div id="page-sqli" class="page">
   <div class="page-header"><h2>SQL Injection Toolkit</h2><p>UNION SELECT builder, SQLite enumeration, lab-specific payloads.</p><span class="tag tag-red">A03</span></div>
   <div class="card">
-    <h3>🔨 UNION SELECT Builder</h3>
+    <h3>UNION SELECT Builder</h3>
     <div class="grid2">
       <div><label>Columns Count</label><input type="text" id="sqli-cols" placeholder="9" oninput="buildUnion()"></div>
       <div><label>Extract Columns</label><input type="text" id="sqli-extract" placeholder="email,password" oninput="buildUnion()"></div>
@@ -315,7 +315,7 @@
 <div id="page-xxe" class="page">
   <div class="page-header"><h2>XXE Payload Builder</h2><p>XML External Entity payloads for file read, SSRF, OOB exfiltration.</p><span class="tag tag-red">A03</span></div>
   <div class="card">
-    <h3>📄 File Read XXE</h3>
+    <h3> File Read XXE</h3>
     <div class="grid2">
       <div><label>Target File</label><input type="text" id="xxe-file" value="/etc/passwd"></div>
       <div><label>Entity Name</label><input type="text" id="xxe-entity" value="xxe"></div>
@@ -333,7 +333,7 @@
     <div class="output" id="xxe-curl"></div>
   </div>
   <div class="card">
-    <h3>🌐 SSRF via XXE</h3>
+    <h3> SSRF via XXE</h3>
     <label>Internal URL</label>
     <input type="text" id="xxe-ssrf-url" value="http://missile-control:6666/launch-the-missiles">
     <button class="btn btn-danger" onclick="buildSsrfXxe()">Generate SSRF XXE</button>
@@ -346,7 +346,7 @@
 <div id="page-pickle" class="page">
   <div class="page-header"><h2>Pickle RCE Payload Generator</h2><p>Python pickle payloads for /api/import deserialization.</p><span class="tag tag-red">A08</span></div>
   <div class="card">
-    <h3>💤 Sleep Test Payload</h3>
+    <h3> Sleep Test Payload</h3>
     <div class="grid2">
       <div><label>Sleep Seconds</label><input type="text" id="sleep-dur" value="10"></div>
       <div><label>Target URL</label><input type="text" id="sleep-url" value="http://wasdat.fi/api/import"></div>
@@ -363,7 +363,7 @@
 <div id="page-csrf" class="page">
   <div class="page-header"><h2>CSRF PoC Builder</h2><p>Auto-generate malicious HTML forms for CSRF attacks. Assignment 1 &amp; 2.</p><span class="tag tag-blue">A01</span></div>
   <div class="card">
-    <h3>🎭 CSRF Form Generator</h3>
+    <h3> CSRF Form Generator</h3>
     <div class="grid2">
       <div><label>Target URL</label><input type="text" id="csrf-url" placeholder="http://wasdat.fi:3000/profile"></div>
       <div><label>Method</label><select id="csrf-method"><option>POST</option><option>GET</option><option>PUT</option></select></div>
@@ -375,7 +375,7 @@
     <button class="btn btn-danger mt8" onclick="buildCsrf()">⚡ Generate CSRF PoC HTML</button>
     <div class="output-header mt8"><span class="output-label">CSRF HTML File</span><button class="copy-btn" onclick="cpEl('csrf-out')">Copy</button></div>
     <div class="output" id="csrf-out" style="color:var(--accent3)"></div>
-    <div class="alert alert-info mt8">💡 Host with: python3 -m http.server 8000 — then send URL to victim</div>
+    <div class="alert alert-info mt8"> Host with: python3 -m http.server 8000 — then send URL to victim</div>
   </div>
 </div>
 
@@ -383,7 +383,7 @@
 <div id="page-nullbyte" class="page">
   <div class="page-header"><h2>Null Byte Bypass Generator</h2><p>File extension bypass using %2500 (Assignment 4 — intra-password.conf, Juice Shop FTP).</p><span class="tag tag-yellow">A04</span></div>
   <div class="card">
-    <h3>🔓 Null Byte URL Builder</h3>
+    <h3> Null Byte URL Builder</h3>
     <div class="grid2">
       <div><label>Base URL</label><input type="text" id="nb-url" placeholder="http://wasdat.fi/private"></div>
       <div><label>Filename</label><input type="text" id="nb-file" placeholder="intra-password.conf"></div>
@@ -394,7 +394,7 @@
     <div id="nb-output" class="mt8"></div>
   </div>
   <div class="card">
-    <h3>📋 Known Null Byte Targets</h3>
+    <h3> Known Null Byte Targets</h3>
     <div id="nb-known"></div>
   </div>
 </div>
@@ -403,7 +403,7 @@
 <div id="page-allowlist" class="page">
   <div class="page-header"><h2>Allowlist Bypass Builder</h2><p>Redirect bypass via query parameter trick (Assignment 8 — Juice Shop).</p><span class="tag tag-red">A08</span></div>
   <div class="card">
-    <h3>↪️ Redirect Bypass URL</h3>
+    <h3>↪ Redirect Bypass URL</h3>
     <label>Juice Shop Base URL</label>
     <input type="text" id="al-base" value="http://wasdat.fi:3000">
     <label>Your Server (Kali IP:Port)</label>
@@ -417,7 +417,7 @@
     <button class="btn btn-primary" onclick="buildAllowlist()">Generate Bypass URL</button>
     <div class="output-header mt8"><span class="output-label">Bypass URL</span><button class="copy-btn" onclick="cpEl('al-out')">Copy</button></div>
     <div class="output" id="al-out"></div>
-    <div class="alert alert-info mt8">💡 Start python server first: python3 -m http.server 8080</div>
+    <div class="alert alert-info mt8"> Start python server first: python3 -m http.server 8080</div>
   </div>
 </div>
 
@@ -425,7 +425,7 @@
 <div id="page-emailtrunc" class="page">
   <div class="page-header"><h2>Email Truncation Calculator</h2><p>Calculate the exact email length for 255-char truncation privilege escalation (Assignment 10).</p><span class="tag tag-red">A10</span></div>
   <div class="card">
-    <h3>✉️ Truncation Email Builder</h3>
+    <h3> Truncation Email Builder</h3>
     <label>Target Domain (must end here after truncation)</label>
     <input type="text" id="et-domain" value="@dontwannacry.com">
     <label>Email Client Domain</label>
@@ -443,7 +443,7 @@
 <div id="page-revshell" class="page">
   <div class="page-header"><h2>Reverse Shell Cheatsheet</h2><p>All reverse shell types with custom IP/Port. Set up listener: nc -lvnp PORT</p><span class="tag tag-red">A08</span></div>
   <div class="card">
-    <h3>⚙️ Configuration</h3>
+    <h3> Configuration</h3>
     <div class="grid2">
       <div><label>Your IP (Kali)</label><input type="text" id="rs-ip" value="10.0.0.4" oninput="renderRevshells()"></div>
       <div><label>Port</label><input type="text" id="rs-port" value="4444" oninput="renderRevshells()"></div>
@@ -458,7 +458,7 @@
 <div id="page-recon" class="page">
   <div class="page-header"><h2>Recon Checklist</h2><p>Systematic recon checklist and endpoint discovery.</p><span class="tag tag-yellow">A04</span></div>
   <div class="card">
-    <h3>🎯 Target URL Builder</h3>
+    <h3> Target URL Builder</h3>
     <input type="text" id="recon-base" placeholder="http://wasdat.fi" oninput="buildReconUrls()">
     <div id="recon-urls" class="mt8"></div>
   </div>
@@ -469,7 +469,7 @@
 <div id="page-http" class="page">
   <div class="page-header"><h2>HTTP Method Tester</h2><p>Generate curl commands for HTTP method testing. DELETE without auth found in Assignment 7.</p><span class="tag tag-blue">A07</span></div>
   <div class="card">
-    <h3>🌐 curl Builder</h3>
+    <h3> curl Builder</h3>
     <div class="grid2">
       <div><label>Target URL</label><input type="text" id="http-url" placeholder="http://wasdat.fi/product/2"></div>
       <div><label>Method</label><select id="http-method"><option>GET</option><option>POST</option><option>PUT</option><option>DELETE</option><option>PATCH</option><option>OPTIONS</option><option>HEAD</option></select></div>
@@ -488,7 +488,7 @@
 <div id="page-respanalyzer" class="page">
   <div class="page-header"><h2>HTTP Response Analyzer</h2><p>Paste HTTP response headers to analyze security misconfigurations.</p></div>
   <div class="card">
-    <h3>📊 Paste Response Headers</h3>
+    <h3> Paste Response Headers</h3>
     <textarea id="resp-input" placeholder="HTTP/1.1 200 OK&#10;Server: nginx/1.19.0&#10;Content-Type: application/json&#10;X-Frame-Options: DENY&#10;..." style="min-height:150px"></textarea>
     <button class="btn btn-primary" onclick="analyzeResp()">Analyze</button>
     <div id="resp-output" class="mt8"></div>
@@ -499,7 +499,7 @@
 <div id="page-wordlist" class="page">
   <div class="page-header"><h2>Wordlist & ffuf Builder</h2><p>Directory fuzzing with ffuf and common security paths.</p></div>
   <div class="card">
-    <h3>🔧 ffuf Command Builder</h3>
+    <h3> ffuf Command Builder</h3>
     <div class="grid2">
       <div><label>Target (FUZZ placeholder)</label><input type="text" id="ffuf-url" placeholder="http://wasdat.fi/FUZZ"></div>
       <div><label>Wordlist</label><select id="ffuf-wl"><option value="/usr/share/wordlists/dirb/common.txt">dirb/common.txt</option><option value="/usr/share/seclists/Discovery/Web-Content/raft-medium-directories.txt">SecLists raft-medium</option><option value="/usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt">dirbuster medium</option></select></div>
@@ -513,7 +513,7 @@
     <div class="output" id="ffuf-out"></div>
   </div>
   <div class="card">
-    <h3>📋 Common Security Paths</h3>
+    <h3> Common Security Paths</h3>
     <input type="text" id="wl-url" placeholder="http://wasdat.fi" oninput="renderWordlist()">
     <div id="wl-paths" class="mt8"></div>
   </div>
@@ -523,7 +523,7 @@
 <div id="page-pwgen" class="page">
   <div class="page-header"><h2>Password Wordlist Generator</h2><p>Generate a custom wordlist based on target information.</p></div>
   <div class="card">
-    <h3>🔐 Target Info</h3>
+    <h3> Target Info</h3>
     <div class="grid2">
       <div><label>Name / Username</label><input type="text" id="pw-name" placeholder="john"></div>
       <div><label>Company / Domain</label><input type="text" id="pw-company" placeholder="wasdat"></div>
