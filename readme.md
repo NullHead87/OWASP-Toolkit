@@ -1,4 +1,4 @@
-# ⚡ OWASP Security Toolkit
+#  OWASP Security Toolkit
 
 > A single-file web security lab assistant for penetration testing practice, CTF competitions, and security education.
 
@@ -8,7 +8,7 @@
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 No installation, no dependencies, no server required.
 
@@ -23,7 +23,7 @@ Works completely offline. All processing happens in the browser.
 
 ---
 
-## 🧰 Tools Included
+## Tools Included
 
 ### Encoding & Crypto
 | Tool | Description | OWASP |
@@ -62,7 +62,7 @@ Works completely offline. All processing happens in the browser.
 
 ---
 
-## 🏴 CTF Lab
+## CTF Lab
 
 The included `ctf_lab.html` is a standalone CTF training environment with **12 challenges** designed to practice the toolkit tools.
 
@@ -85,7 +85,7 @@ The included `ctf_lab.html` is a standalone CTF training environment with **12 c
 
 ---
 
-## 📋 Use Cases
+##  Use Cases
 
 - **CTF competitions** — Quick access to common payloads and encoding tools
 - **Lab environments** — Juice Shop, DVWA, HackTheBox, TryHackMe, PortSwigger
@@ -95,7 +95,7 @@ The included `ctf_lab.html` is a standalone CTF training environment with **12 c
 
 ---
 
-## 🔧 No Dependencies
+##  No Dependencies
 
 - ✅ Pure HTML + vanilla JavaScript
 - ✅ No Node.js, Python, or any runtime required
@@ -106,7 +106,7 @@ The included `ctf_lab.html` is a standalone CTF training environment with **12 c
 
 ---
 
-## 📁 Files
+##  Files
 
 ```
 owasp-security-toolkit/
@@ -118,7 +118,7 @@ owasp-security-toolkit/
 
 ---
 
-## ⚖️ Legal Disclaimer
+##  Legal Disclaimer
 
 > **This toolkit is intended for authorized penetration testing, CTF competitions, security research, and educational purposes only.**
 >
@@ -130,7 +130,7 @@ owasp-security-toolkit/
 
 ---
 
-## 📚 References
+##  References
 
 - [OWASP Top 10](https://owasp.org/www-project-top-ten/)
 - [OWASP API Security Top 10](https://owasp.org/www-project-api-security/)
@@ -140,7 +140,7 @@ owasp-security-toolkit/
 
 ---
 
-## 📄 License
+## License
 
 MIT License — free to use, modify, and distribute.
 
